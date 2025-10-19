@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Pied de page E-MED-CYBER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://static.wixstatic.com">
+    <link rel="preload" href="https://static.wixstatic.com/media/93b4b8_39962835c12a401480b40c8631f929e5~mv2.png" as="image">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #030f32;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Canvas pour les particules */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Effet de scan cyberpunk */
+        .scan-line {
+            position: fixed;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            box-shadow: 0 0 30px #00ff88, 0 0 60px #00ff88;
+            animation: scan 6s linear infinite;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        .footer-container {
+            position: relative;
+            background: #030f32;
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .footer-menu {
+            background: transparent;
+            padding: 30px 20px 20px;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .footer-left {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            height: 340px;
+        }
+
+        .footer-center {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            max-width: 400px;
+            position: relative;
+            z-index: 20;
+            height: 340px;
+        }
+
+        .footer-right {
+            flex: 1;
+            max-width: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 340px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .footer-image {
+            width: 100%;
+            max-width: 400px;
+            height: 340px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 215, 0, 0.1);
+            object-fit: cover;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: gold;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .footer-copyright .main-text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-copyright .sub-text {
+            font-size: 14px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .logo-section {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo-section img {
+            height: 30px;
+            width: auto;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+        }
+
+        .logo-section img:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+        }
+
+        .trustpilot-widget {
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 0 15px rgba(255, 215, 0, 0.2);
+            text-align: center;
+            z-index: 25;
+            position: relative;
+            width: 100%;
+            max-width: 170px;
+            margin-top: auto;
+            margin-bottom: 0;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .trustpilot-link {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .trustpilot-link:hover {
+            transform: scale(1.05);
+        }
+
+        .trustpilot-logo {
+            width: 100%;
+            height: auto;
+            max-width: 150px;
+            border-radius: 5px;
+        }
+
+        .trustpilot-text {
+            color: #00b67a;
+            font-size: 10px;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            height: 340px;
+            overflow: hidden;
+            justify-content: center;
+        }
+
+        .footer-btn {
+            display: flex;
+            align-items: center;
+            padding: 20px 25px;
+            background: rgba(52, 84, 209, 0.3);
+            color: gold;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 16px;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            min-height: 60px;
+        }
+
+        .footer-btn-text {
+            flex: 1;
+            text-align: center;
+            line-height: 1.1;
+            font-weight: 600;
+        }
+
+        .footer-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, gold, #ffec8b, gold, #ffec8b);
+            border-radius: 52px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: rotateGradient 2s linear infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes rotateGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .footer-btn:hover::before {
+            opacity: 1;
+        }
+
+        .footer-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .footer-btn:hover::after {
+            left: 100%;
+        }
+
+        .footer-btn:hover {
+            background: linear-gradient(135deg, gold 0%, #ffec8b 100%);
+            color: #030f32;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.3);
+            padding-left: 30px;
+            letter-spacing: 0.2px;
+        }
+
+        .footer-btn:active {
+            transform: translateY(-1px) scale(0.98);
+            animation: pulse 0.3s ease;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+
+        .footer-btn .icon {
+            margin-left: auto;
+            opacity: 0;
+            transition: all 0.4s ease;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .footer-btn:hover .icon {
+            opacity: 1;
+            animation: bounce 0.6s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateX(0); }
+            to { transform: translateX(2px); }
+        }
+
+        /* Cube 3D - FIX CRITIQUE */
+        .cube-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        :root {
+            --cube-size: 112px;
+            --face-translate: 56px;
+        }
+
+        .scene {
+            width: var(--cube-size);
+            height: var(--cube-size);
+            perspective: 1000px;
+            position: absolute;
+            pointer-events: none;
+            transform-style: preserve-3d;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 5s infinite linear;
+            pointer-events: none;
+        }
+
+        .face {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border: 2px solid #3454d1;
+            background-color: rgba(52, 84, 209, 0.6);
+            margin: 5px;
+            pointer-events: none;
+            backface-visibility: visible;
+        }
+
+        .front { 
+            transform: rotateY(0deg) translateZ(var(--face-translate)); 
+        }
+        .back { 
+            transform: rotateY(180deg) translateZ(var(--face-translate)); 
+        }
+        .right { 
+            transform: rotateY(90deg) translateZ(var(--face-translate)); 
+        }
+        .left { 
+            transform: rotateY(-90deg) translateZ(var(--face-translate)); 
+        }
+        .top { 
+            transform: rotateX(90deg) translateZ(var(--face-translate)); 
+        }
+        .bottom { 
+            transform: rotateX(-90deg) translateZ(var(--face-translate)); 
+        }
+
+        .letter {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: gold;
+            text-shadow: 0 0 10px gold;
+            white-space: nowrap;
+            pointer-events: none;
+            font-weight: 700;
+        }
+
+        .image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(1px);
+            width: 56px;
+            pointer-events: none;
+        }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .footer-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-left, .footer-center, .footer-right {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles"></canvas>
+    <div class="scan-line"></div>
+    
+    <div class="footer-container">
+        <div class="footer-menu">
+            <div class="footer-left">
+                <div class="menu-buttons">
+                    <a href="https://www.e-med-cyber.fr/qui-sommes-nous" target="_blank" rel="noopener noreferrer" class="footer-btn">
+                        <span class="footer-btn-text">À propos</span>
+                        <span class="icon">→</span>
+                    </a>
+                    <a href="https://www.e-med-cyber.fr/mentions-legales" target="_blank" rel="noopener noreferrer" class="footer-btn">
+                        <span class="footer-btn-text">Mentions légales</span>
+                        <span class="icon">→</span>
+                    </a>
+                    <a href="https://www.e-med-cyber.fr/foire-aux-questions" target="_blank" rel="noopener noreferrer" class="footer-btn">
+                        <span class="footer-btn-text">Questions fréquentes</span>
+                        <span class="icon">→</span>
+                    </a>
+                    <a href="mailto:contact@e-med-cyber.fr" class="footer-btn">
+                        <span class="footer-btn-text">Besoin d'aide ?</span>
+                        <span class="icon">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-center">
+                <div class="footer-copyright">
+                    <div class="main-text">© 2023 E-MED-CYBER</div>
+                    <div class="sub-text">Le spécialiste de la Cyberdéfense</div>
+                </div>
+                <div class="logo-section">
+                    <img src="https://static.wixstatic.com/media/93b4b8_39f6dca22e2d41a388d6f16ea806e202~mv2.png" alt="Logo 1" width="30" height="30" loading="lazy">
+                    <img src="https://static.wixstatic.com/media/93b4b8_29e037c361ab4c619738818663bc55a0~mv2.png" alt="Logo 2" width="30" height="30" loading="lazy">
+                </div>
+                <div class="trustpilot-widget">
+                    <a href="https://fr.trustpilot.com/review/e-med-cyber.fr" target="_blank" rel="noopener noreferrer" class="trustpilot-link">
+                        <img src="https://static.wixstatic.com/media/93b4b8_fb50a50ce0af46f386c452808a16321d~mv2.png" alt="Trustpilot" class="trustpilot-logo" width="150" height="30" loading="lazy">
+                        <div class="trustpilot-text">Voir nos avis</div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-right">
+                <img src="https://static.wixstatic.com/media/93b4b8_905f985f466941dca4bbb59858ac2fe8~mv2.jpg" alt="Image droite" class="footer-image" width="400" height="340" loading="lazy">
+            </div>
+        </div>
+        
+        <div class="cube-container">
+            <div class="scene">
+                <div class="cube">
+                    <div class="face front"><div class="letter">E-MED-CYBER</div></div>
+                    <div class="face back"><div class="letter">E-MED-CYBER</div></div>
+                    <div class="face right"><div class="letter">E-MED-CYBER</div></div>
+                    <div class="face left"><div class="letter">E-MED-CYBER</div></div>
+                    <div class="face top"><div class="letter">E-MED-CYBER</div></div>
+                    <div class="face bottom"><div class="letter">E-MED-CYBER</div></div>
+                    <img class="image" src="https://static.wixstatic.com/media/93b4b8_39962835c12a401480b40c8631f929e5~mv2.png" alt="Logo" width="56" height="56" loading="eager">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Effet Matrix
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Caractères pour l'effet Matrix
+        const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        // Initialisation des gouttes
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100;
+        }
+
+        function drawMatrix() {
+            // Fond semi-transparent pour effet de traînée
+            ctx.fillStyle = 'rgba(3, 15, 50, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff88'; // Vert Matrix
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                // Caractère aléatoire
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+
+                // Dégradé de couleur pour effet de profondeur
+                if (drops[i] * fontSize > canvas.height * 0.7) {
+                    ctx.fillStyle = '#00ff88'; // Vert vif en bas
+                } else if (drops[i] * fontSize > canvas.height * 0.4) {
+                    ctx.fillStyle = '#00dd77'; // Vert moyen
+                } else {
+                    ctx.fillStyle = '#00bb66'; // Vert foncé en haut
+                }
+
+                ctx.fillText(text, x, y);
+
+                // Réinitialisation aléatoire
+                if (y > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        function animateMatrix() {
+            drawMatrix();
+            requestAnimationFrame(animateMatrix);
+        }
+
+        animateMatrix();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            drops.length = Math.floor(canvas.width / fontSize);
+            for (let i = 0; i < drops.length; i++) {
+                if (drops[i] === undefined) {
+                    drops[i] = Math.random() * -100;
+                }
+            }
+        });
+
+        // Animation du cube 3D - IDENTIQUE À L'ORIGINAL
+        (function() {
+            const scene = document.querySelector('.scene');
+            if (scene) {
+                const footerMenu = document.querySelector('.footer-menu').getBoundingClientRect();
+                const maxHeight = 340;
+                const maxWidth = footerMenu.width;
+                
+                let x = Math.random() * (maxWidth - 112);
+                let y = Math.random() * (maxHeight - 112);
+                let dx = Math.random() + 0.5;
+                let dy = Math.random() + 0.5;
+
+                function moveCube() {
+                    x += dx;
+                    y += dy;
+
+                    if (x >= maxWidth - 122 || x <= 10) dx = -dx;
+                    if (y >= maxHeight - 122 || y <= 10) dy = -dy;
+
+                    scene.style.transform = `translate(${x}px, ${y}px)`;
+                    requestAnimationFrame(moveCube);
+                }
+
+                moveCube();
+            }
+        })();
+
+        // Gestion des images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                this.style.opacity = '0.5';
+            }, { passive: true });
+        });
+
+        // Preload des liens - COMME L'ORIGINAL
+        (function() {
+            const config = {
+                preloadDelay: 800,
+                hoverPreloadDelay: 1200,
+                preloadInterval: 300
+            };
+
+            const state = {
+                footerLinks: [
+                    "https://www.e-med-cyber.fr/qui-sommes-nous",
+                    "https://www.e-med-cyber.fr/mentions-legales",
+                    "https://www.e-med-cyber.fr/foire-aux-questions",
+                    "https://fr.trustpilot.com/review/e-med-cyber.fr"
+                ],
+                isPreloading: false
+            };
+
+            function preloadLink(url) {
+                return fetch(url, {
+                    method: 'GET',
+                    mode: 'no-cors',
+                    cache: 'force-cache'
+                }).catch(() => {});
+            }
+
+            function startBatchPreload() {
+                if (!state.isPreloading) {
+                    state.isPreloading = true;
+                    const links = state.footerLinks;
+                    const interval = config.preloadInterval;
+                    let index = 0;
+
+                    function preloadNext() {
+                        if (index < links.length) {
+                            const promise = preloadLink(links[index]);
+                            if (promise) {
+                                promise.then(() => {
+                                    index++;
+                                    if (index < links.length) {
+                                        setTimeout(preloadNext, interval);
+                                    } else {
+                                        state.isPreloading = false;
+                                    }
+                                });
+                            }
+                        }
+                    }
+
+                    preloadNext();
+                }
+            }
+
+            setTimeout(startBatchPreload, config.preloadDelay);
+        })();
+    </script>
+</body>
+</html>
